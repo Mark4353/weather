@@ -1,0 +1,37 @@
+.hero-title {
+  font-size: 3rem;
+  color: #333;
+  text-align: center;
+}
+
+.hero-info {
+  font-size: 1.2rem;
+  color: #555;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 30%;
+}
+
+.hero-input {
+  color: #878787;
+  background-color: #d9d9d9;
+  border: none;
+  padding: 8px 180px 8px 10px;
+  border-radius: 9px;
+}
+
+.hero-search-btn {
+  background-color: #ffb36c;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 0 9px 9px 0;
+  margin-left: -12px;
+}
+
+.hero-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
