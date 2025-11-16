@@ -12,7 +12,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "",
+  "homepage": "https://mark4353.github.io/weather/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
