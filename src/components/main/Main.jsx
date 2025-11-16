@@ -16,8 +16,9 @@ function Main() {
       if (weather) setWeather((w) => ({ ...w }));
     }, 60000);
     return () => clearInterval(t);
-  }, []);
+  }, [getCityWeather, weather]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function getCityWeather() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(

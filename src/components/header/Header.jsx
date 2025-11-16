@@ -9,9 +9,9 @@ function Header() {
             <img src="" alt="logo" />
             </div>
           <ul className="header-links">
-            <li className="header-link"><a href="#">Who we are</a></li>
-            <li className="header-link"><a href="#">Contacts</a></li>
-            <li className="header-link"><a href="#">Menu</a></li>
+            <li className="header-link">Who we are</li>
+            <li className="header-link">Contacts</li>
+            <li className="header-link">Menu</li>
           </ul>
         <div className="header-btns">
           <button className="header-btn">Sing Up</button>
