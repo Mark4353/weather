@@ -1,4 +1,5 @@
 import "./App.css";
+import "./reset.css";
 import Header from "./components/header/Header.jsx";
 import Hero from "./components/hero/Hero.jsx";
 import Main from "./components/main/Main.jsx";
@@ -9,7 +10,9 @@ function App() {
     <>
       <Header />
       <Hero />
-    </>
+      <Main/>
+      <Footer/>
+   </>
   );
 }
 

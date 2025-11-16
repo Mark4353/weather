@@ -1,0 +1,64 @@
+
+header{
+    height: 100px;
+
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+}
+.header-links{
+    display: flex;
+    gap: 30px;
+   justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+.header-link{
+    font-size: 16px;
+    color: #000;
+   transition: all 0.5s ease;
+}
+.header-link:hover{
+    text-decoration: underline #FFB36C;
+    cursor: pointer;
+    color: #FFB36C;
+transition: all 0.3s ease;
+}
+img{
+    height: 60px;
+    width: 60px;
+}
+.header-btns{
+    
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+.header-btn{
+background-color: #FFB36C;
+    color: black;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.header-btn:hover{
+    background-color: #e69a4f;
+    transition: all 0.3s ease;
+}
+.profile-btn{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.profile-btn:hover{
+    opacity: 0.5;
+}
+a{
+       color: inherit;
+       font-family: Montserrat Alternates, sans-serif;
+}

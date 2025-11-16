@@ -10,3 +10,5 @@ function Slider() {
          </ul>
   </div>;
 }
+
+export default Slider;

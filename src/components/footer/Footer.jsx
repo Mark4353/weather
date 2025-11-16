@@ -2,7 +2,9 @@ import "./Footer.css";
 
 function Footer() {
   return (
-    <>
+    
+    <footer>
+      <div className="container">
       <img className="footer-logo" />
       <div className="adr">
         <h3 className="footer-adr-title">Address</h3>
@@ -11,6 +13,8 @@ function Footer() {
       <div className="contact">
         <h3 className="contact-title">Contact us</h3>
       </div>
-    </>
+      </div>
+    </footer>
   );
 }
+export default Footer;
