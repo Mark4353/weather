@@ -1,4 +1,4 @@
-
+@import '../../App.css';
 header{
     height: 100px;
 
@@ -22,9 +22,9 @@ header{
    transition: all 0.5s ease;
 }
 .header-link:hover{
-    text-decoration: underline #FFB36C;
+    text-decoration: underline var(--back-color);
     cursor: pointer;
-    color: #FFB36C;
+    color: var(--back-color);
 transition: all 0.3s ease;
 }
 img{
@@ -38,7 +38,7 @@ img{
     justify-content: flex-end;
 }
 .header-btn{
-background-color: #FFB36C;
+background-color: var(--back-color);
     color: black;
     padding: 8px 15px;
     border: none;

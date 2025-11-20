@@ -21,3 +21,24 @@
         max-width: 100%;
     }
 }
+
+:root {
+    --back-color: #FFB36C;
+    --secondary-color: #333333;
+    --background-color: #FFFFFF;
+    --font-family: 'Arial', sans-serif;
+    --card-background: #E8E8E8;
+    --data-color: #666666;
+    --btn-hover-color: #e79d57;
+    --cart-text-color: #000000;
+}
+.dark-mode {
+    --back-color: #ffb36cae;
+    --secondary-color: #CCCCCC;
+    --background-color: #121212;
+    --font-family: 'Arial', sans-serif;
+    --card-background: #1E1E1E;
+    --data-color: #AAAAAA;
+    --btn-hover-color: #e69a4fe9;
+    --cart-text-color: #FFFFFF;
+}

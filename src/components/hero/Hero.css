@@ -4,8 +4,8 @@
   text-align: center;
   font-family: Montserrat, sans-serif;
 }
-.hero{
-padding-top: 80px;
+.hero {
+  padding-top: 80px;
   background-image: url(../../../image/desktop/hero/main-hero-bg.png);
   background-size: cover;
   background-position: center;
@@ -13,16 +13,18 @@ padding-top: 80px;
 }
 .hero-info {
   display: flex;
-justify-content: center;
+  justify-content: center;
   gap: 30px;
-margin-top: 70px;
- margin-bottom: 100px;
-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  font-size: 24px; 
+  margin-top: 70px;
+  margin-bottom: 100px;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+    sans-serif;
+  font-size: 24px;
   line-height: 2.5;
   font-weight: 500;
   color: #ffffff;
 }
+
 .info-box {
   display: flex;
   flex-direction: column;
@@ -37,12 +39,13 @@ font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-
   width: 425px;
   height: 22px;
 }
+
 .hero-input:focus {
   outline: none;
 }
 
 .hero-search-btn {
-  background-color: #ffb36c;
+  background-color: var(--back-color);
   border: none;
   width: 47px;
   height: 38px;
@@ -50,13 +53,24 @@ font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-
   margin-left: -12px;
   transition: all 0.3s cubic-bezier(0.28, 0.93, 0.79, 0.15);
 }
-.hero-search-btn:hover{
+.hero-search-btn:hover {
   cursor: pointer;
-  background-color: #e79d57;
+  background-color: var(--btn-hover-color);
   transition: all 0.3s ease;
 }
 .hero-form {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 1045px) {
+  .hero-input {
+    padding: 8px 100px 8px 10px;
+    width: 300px;
+  }
+  .hero-info {
+    gap: 15px;
+    margin-bottom: 50px;
+  }
 }
