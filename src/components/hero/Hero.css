@@ -3,6 +3,7 @@
   color: white;
   text-align: center;
   font-family: Montserrat, sans-serif;
+  margin-top: 50px;
 }
 .hero {
   padding-top: 80px;
@@ -56,7 +57,7 @@ position: relative;
 }
 
 .hero-search-btn {
-  background-color: var(--input-btn-color);
+  background-color: var(--back-color);
   border: none;
   width: 47px;
   height: 38px;
@@ -68,7 +69,7 @@ position: relative;
 }
 .hero-search-btn:hover {
   cursor: pointer;
-  background-color: var(--btn-hover-color);
+  background-color: var(--btn-hover-color2);
   transition: all 0.2s ease;
 }
 .hero-form {

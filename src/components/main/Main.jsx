@@ -180,7 +180,7 @@ function Main() {
           </li>
         </ul>
 
-        <h3 className="news-title">Interacting with our pets</h3>
+        <h3 className="news-title">News</h3>
         <ul className="news-list">
           {displayedArticles.map((a, index) => (
             <li key={`${a.url}`} className="news-item">

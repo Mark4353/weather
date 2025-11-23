@@ -47,7 +47,7 @@ background-color: var(--back-color);
     transition: all 0.5s ease;
 }
 .header-btn:hover{
-    background-color: #e69a4f;
+    background-color: var(--btn-hover-color2);
     transition: all 0.3s ease;
 }
 .profile-btn{
