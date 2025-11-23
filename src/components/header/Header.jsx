@@ -34,7 +34,7 @@ function Header() {
       <div className="container">
         <div className="header">
           <div className="logo-box">
-            <img src="" alt="logo" />
+            <img src='' alt="logo" />
           </div>
 
           <ul className="header-links">
@@ -43,12 +43,14 @@ function Header() {
             <li className="header-link">Menu</li>
           </ul>
 
-          <button className="theme-btn" onClick={toggleTheme} title="Toggle theme">
-            {isDarkMode ? "☀️" : "🌙"}
-          </button>
+        
 
           <div className="header-btns">
-            <LoginButton />
+            <button className="theme-btn" onClick={toggleTheme} title="Toggle theme">
+            {isDarkMode ? "☀️" : "🌙"}
+          </button> 
+          <LoginButton />
+             
           </div>
         </div>
       </div>
