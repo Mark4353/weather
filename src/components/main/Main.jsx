@@ -10,7 +10,7 @@ function Main() {
   const [currentPage, setCurrentPage] = useState(0);
   const PER_PAGE = 4;
 
-  const API_KEY = "33efc2b91d2c7c3d5deea4f4c1a523d2";
+  const API_KEY = process.env.REACT_APP_OWM_KEY || "33efc2b91d2c7c3d5deea4f4c1a523d2";
 
   async function loadWeatherByCoordinates(lat, lon) {
     try {
@@ -82,7 +82,7 @@ function Main() {
   }, []);
 
   useEffect(() => {
-    const newsApi = "2cf7b639072143a2b52de39615867e0a";
+    const newsApi = process.env.REACT_APP_NEWS_KEY ||"2cf7b639072143a2b52de39615867e0a";
     fetch(
       `https://newsapi.org/v2/everything?q=weather&apiKey=${newsApi}&pageSize=3`
     )

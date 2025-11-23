@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "../../App.css";
 import "./login.css";
 
-const API_BASE = "https://682364aa65ba058033969579.mockapi.io/api/login";
+const API_BASE = process.env.REACT_APP_MOCKAPI_BASE || "https://682364aa65ba058033969579.mockapi.io/api/login";
 
 export default function LoginButton() {
   const [modalOpen, setModalOpen] = useState(false);
