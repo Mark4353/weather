@@ -82,17 +82,19 @@ function Main() {
   }, []);
 
   useEffect(() => {
-    const newsApi = process.env.REACT_APP_NEWS_KEY ||"2cf7b639072143a2b52de39615867e0a";
-    fetch(
-      `https://newsapi.org/v2/everything?q=weather&apiKey=${newsApi}&pageSize=3`
-    )
+    const newsApi = "2cf7b639072143a2b52de39615867e0a";
+    const proxyUrl = "https://api.allorigins.win/get?url=";
+    const newsUrl = encodeURIComponent(
+      `https://newsapi.org/v2/everything?q=weather&apiKey=${newsApi}&pageSize=20&sortBy=publishedAt`
+    );
+
+    fetch(proxyUrl + newsUrl)
       .then((response) => response.json())
       .then((data) => {
-        if (data.articles) {
-          
-          const articlesWithImages = data.articles.filter((a) => a.urlToImage);
+        const articles = JSON.parse(data.contents);
+        if (articles.articles) {
+          const articlesWithImages = articles.articles.filter((a) => a.urlToImage);
           setArticles(articlesWithImages);
-          
           setDisplayedArticles(articlesWithImages.slice(0, PER_PAGE));
           setCurrentPage(0);
         }
