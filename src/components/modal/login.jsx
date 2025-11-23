@@ -176,6 +176,7 @@ export default function LoginButton() {
                 <p>
                   Signed in as <strong>{user.email}</strong>
                 </p>
+                <p></p>
                 <div className="login-account-actions">
                   <button
                     onClick={() => {

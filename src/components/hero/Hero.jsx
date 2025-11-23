@@ -11,6 +11,7 @@ function Hero() {
 
   return (
     <section className="hero">
+      <div className="bg-opacity">
       <div className="container">
         <h1 className="hero-title">Weather dashboard</h1>
         <div className="info-box">
@@ -28,6 +29,7 @@ function Hero() {
           />
           <button className="hero-search-btn">search</button>
         </form>
+      </div>
       </div>
     </section>
   );

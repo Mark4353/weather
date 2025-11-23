@@ -9,7 +9,18 @@
   background-image: url(../../../image/desktop/hero/main-hero-bg.png);
   background-size: cover;
   background-position: center;
+position: relative;
   height: 595px;
+}
+.bg-opacity{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, var(--hero-bg-opacity));
+  z-index: 0;
+  transition: background-color 0.3s ease;
 }
 .hero-info {
   display: flex;
@@ -45,18 +56,20 @@
 }
 
 .hero-search-btn {
-  background-color: var(--back-color);
+  background-color: var(--input-btn-color);
   border: none;
   width: 47px;
   height: 38px;
   border-radius: 0 9px 9px 0;
   margin-left: -12px;
-  transition: all 0.3s cubic-bezier(0.28, 0.93, 0.79, 0.15);
+  transition: all 0.3s ease;
+ color: var(--cart-text-color);
+
 }
 .hero-search-btn:hover {
   cursor: pointer;
   background-color: var(--btn-hover-color);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 .hero-form {
   display: flex;

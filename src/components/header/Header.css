@@ -18,7 +18,7 @@ header{
 }
 .header-link{
     font-size: 16px;
-    color: #000;
+    color: var(--cart-text-color);
    transition: all 0.5s ease;
 }
 .header-link:hover{
@@ -39,12 +39,12 @@ img{
 }
 .header-btn{
 background-color: var(--back-color);
-    color: black;
+    color: var(--cart-text-color);
     padding: 8px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 .header-btn:hover{
     background-color: #e69a4f;
@@ -61,4 +61,13 @@ background-color: var(--back-color);
 a{
        color: inherit;
        font-family: Montserrat Alternates, sans-serif;
+}
+.theme-btn{
+    border: none;
+    background-color: var(--back-color);
+    cursor: pointer;
+border-radius: 5px;
+    padding: 8px 15px;
+    color: var(--cart-text-color);
+    transition: all 0.5s ease;
 }

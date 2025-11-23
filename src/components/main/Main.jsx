@@ -1,40 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./Main.css";
 
 function Main() {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [articles, setArticles] = useState([]);
+  const [displayedArticles, setDisplayedArticles] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const PER_PAGE = 4;
 
-  const API_KEY =
-    "33efc2b91d2c7c3d5deea4f4c1a523d2" || "0c72cff0a989075ba1b65f2aca63f77b";
-
-  useEffect(() => {
-    getCityWeather();
-
-    const t = setInterval(() => {
-      if (weather) setWeather((w) => ({ ...w }));
-    }, 60000);
-    return () => clearInterval(t);
-  }, [getCityWeather, weather]);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  function getCityWeather() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          const lat = pos.coords.latitude;
-          const lon = pos.coords.longitude;
-          loadWeatherByCoordinates(lat, lon);
-        },
-        () => {
-          loadCityByIP();
-        }
-      );
-    } else {
-      loadCityByIP();
-    }
-  }
+  const API_KEY = "33efc2b91d2c7c3d5deea4f4c1a523d2";
 
   async function loadWeatherByCoordinates(lat, lon) {
     try {
@@ -58,9 +34,9 @@ function Main() {
     try {
       const locRes = await fetch("https://ipapi.co/json/");
       const loc = await locRes.json();
-      const city = loc.city || "kiev";
+      const city = loc.city || "Kiev";
       const res = await fetch(
-        `https://api.openweathermap.org/data/3.0/weather?q=${encodeURIComponent(
+        `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
           city
         )}&units=metric&lang=en&appid=${API_KEY}`
       );
@@ -77,13 +53,75 @@ function Main() {
     }
   }
 
+  const getCityWeather = useCallback(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const lat = pos.coords.latitude;
+          const lon = pos.coords.longitude;
+          loadWeatherByCoordinates(lat, lon);
+        },
+        () => {
+          loadCityByIP();
+        }
+      );
+    } else {
+      loadCityByIP();
+    }
+  }, []);
+
+  useEffect(() => {
+    getCityWeather();
+  }, [getCityWeather]);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setWeather((w) => (w ? { ...w } : null));
+    }, 60000);
+    return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
+    const newsApi = "2cf7b639072143a2b52de39615867e0a";
+    fetch(
+      `https://newsapi.org/v2/everything?q=weather&apiKey=${newsApi}&pageSize=3`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.articles) {
+          
+          const articlesWithImages = data.articles.filter((a) => a.urlToImage);
+          setArticles(articlesWithImages);
+          
+          setDisplayedArticles(articlesWithImages.slice(0, PER_PAGE));
+          setCurrentPage(0);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching news:", error);
+      });
+  }, []);
+
+  function handleSeeMore() {
+    const nextPage = currentPage + 1;
+    const startIndex = nextPage * PER_PAGE;
+    const endIndex = startIndex + PER_PAGE;
+    const newArticles = articles.slice(0, endIndex);
+    setDisplayedArticles(newArticles);
+    setCurrentPage(nextPage);
+  }
+
+  const hasMoreArticles =
+    displayedArticles.length < articles.length;
+
   const now = new Date();
   const timeString = now.toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
   });
   const dateString = now.toLocaleDateString();
-const weekday = now.toLocaleString("en-US", { weekday: "long" }); 
+  const weekday = now.toLocaleString("en-US", { weekday: "long" });
+
   return (
     <section className="main">
       <div className="container">
@@ -93,7 +131,9 @@ const weekday = now.toLocaleString("en-US", { weekday: "long" });
               {loading ? "loading..." : error ? "—" : weather?.name || "—"}
             </p>
             <h3 className="time">{timeString}</h3>
-            <p className="item-date">{dateString} | {weekday}</p>
+            <p className="item-date">
+              {dateString} | {weekday}
+            </p>
             {weather && !loading && !error && (
               <div className="weather-meta">
                 <img
@@ -126,7 +166,7 @@ const weekday = now.toLocaleString("en-US", { weekday: "long" });
                 </button>
               </li>
               <li className="btn">
-                <button className="item-like-btn">♥</button>
+                {/* <button className="item-like-btn"><img src="../../image/desktop/card/heart.svg" alt="" /></button> */}
               </li>
               <li className="btn">
                 <button className="item-more-btn">See more</button>
@@ -140,15 +180,22 @@ const weekday = now.toLocaleString("en-US", { weekday: "long" });
 
         <h3 className="news-title">Interacting with our pets</h3>
         <ul className="news-list">
-          <li className="news-item">
-            <img src="#" alt="" />
-            <p className="news-text"></p>
-          </li>
+          {displayedArticles.map((a, index) => (
+            <li key={`${a.url}`} className="news-item">
+              {a.urlToImage && (
+                <img src={a.urlToImage} alt={a.title} className="news-img" />
+              )}
+              <p className="news-text">{a.title}</p>
+            </li>
+          ))}
         </ul>
-        <button className="news-btn">See more</button>
+        {hasMoreArticles && (
+          <button className="news-btn" onClick={handleSeeMore}>
+            See more
+          </button>
+        )}
       </div>
     </section>
   );
 }
-
 export default Main;
