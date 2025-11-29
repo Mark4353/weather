@@ -35,7 +35,7 @@ export default function LoginButton() {
       setPassword("");
       setError("");
     }
-  }, [modalOpen, setError]);
+  }, [modalOpen]);
 
   useEffect(() => {
     function onKey(e) {
@@ -61,18 +61,23 @@ export default function LoginButton() {
     setSubmitting(true);
     setError("");
     try {
-      const checkRes = await fetch(
-        `${API_BASE}?email=${encodeURIComponent(email)}`
-      );
+     
+      const checkRes = await fetch(API_BASE);
       if (!checkRes.ok) throw new Error("Network error while checking user");
-      const existing = await checkRes.json();
+      const allUsers = await checkRes.json();
 
-      if (existing && existing.length) {
-        const found = existing[0];
+     
+      const found = allUsers.find((u) => u.email === email);
+
+      if (found) {
+        
+        if (found.password !== password) {
+          throw new Error("Invalid password");
+        }
         const usr = {
           id: found.id,
           email: found.email,
-          name: found.name || found.username || email.split("@")[0],
+          name: found.name || email.split("@")[0],
         };
         setUser(usr);
         localStorage.setItem("weather_user", JSON.stringify(usr));
@@ -80,17 +85,18 @@ export default function LoginButton() {
         return;
       }
 
+      
       const createRes = await fetch(API_BASE, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password, name: email.split("@")[0] }),
       });
-      if (!createRes.ok) throw new Error("Failed to create account (mock).");
+      if (!createRes.ok) throw new Error("Failed to create account.");
       const created = await createRes.json();
       const usr = {
         id: created.id || Date.now(),
         email: created.email || email,
-        name: created.name || created.username || email.split("@")[0],
+        name: created.name || email.split("@")[0],
       };
       setUser(usr);
       localStorage.setItem("weather_user", JSON.stringify(usr));
@@ -168,7 +174,7 @@ export default function LoginButton() {
                 </label>
 
                 <button type="submit" className="login-button" disabled={submitting}>
-                  Sign in / Sign up
+                  {submitting ? "Signing in…" : "Sign in / Sign up"}
                 </button>
               </form>
             ) : (
@@ -176,7 +182,6 @@ export default function LoginButton() {
                 <p>
                   Signed in as <strong>{user.email}</strong>
                 </p>
-                <p></p>
                 <div className="login-account-actions">
                   <button
                     onClick={() => {
