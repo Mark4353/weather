@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "./Main.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 function Main() {
   const [weather, setWeather] = useState(null);
@@ -10,7 +11,8 @@ function Main() {
   const [currentPage, setCurrentPage] = useState(0);
   const PER_PAGE = 4;
 
-  const API_KEY = process.env.REACT_APP_OWM_KEY || "33efc2b91d2c7c3d5deea4f4c1a523d2";
+  const API_KEY =
+    process.env.REACT_APP_OWM_KEY || "33efc2b91d2c7c3d5deea4f4c1a523d2";
 
   async function loadWeatherByCoordinates(lat, lon) {
     try {
@@ -93,7 +95,9 @@ function Main() {
       .then((data) => {
         const articles = JSON.parse(data.contents);
         if (articles.articles) {
-          const articlesWithImages = articles.articles.filter((a) => a.urlToImage);
+          const articlesWithImages = articles.articles.filter(
+            (a) => a.urlToImage
+          );
           setArticles(articlesWithImages);
           setDisplayedArticles(articlesWithImages.slice(0, PER_PAGE));
           setCurrentPage(0);
@@ -113,8 +117,7 @@ function Main() {
     setCurrentPage(nextPage);
   }
 
-  const hasMoreArticles =
-    displayedArticles.length < articles.length;
+  const hasMoreArticles = displayedArticles.length < articles.length;
 
   const now = new Date();
   const timeString = now.toLocaleTimeString([], {
@@ -164,17 +167,19 @@ function Main() {
                     getCityWeather();
                   }}
                 >
-                  o
+                  <i class="bi bi-arrow-clockwise"></i>
                 </button>
               </li>
               <li className="btn">
-                {/* <button className="item-like-btn"><img src="../../image/desktop/card/heart.svg" alt="" /></button> */}
+                <button className="item-like-btn">
+                  <i class="bi bi-heart"></i>
+                </button>
               </li>
               <li className="btn">
                 <button className="item-more-btn">See more</button>
               </li>
               <li className="btn">
-                <button className="item-del-btn">x</button>
+                <button className="item-del-btn"><i class="bi bi-trash"></i></button>
               </li>
             </ul>
           </li>

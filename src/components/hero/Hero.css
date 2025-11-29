@@ -86,5 +86,41 @@ position: relative;
   .hero-info {
     gap: 15px;
     margin-bottom: 50px;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 650px) {
+  .hero {
+    height: 500px;
+    padding-top: 60px;
+  }
+  .hero-title {
+    font-size: 28px;
+    margin-top: 30px;
+  }
+  .hero-input {
+    padding: 8px 50px 8px 10px;
+    width: 200px;
+  }
+  .hero-info {
+    flex-direction: column;
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    gap: 10px;
+  text-align: center;
+  }
+  
+  
+}
+@media screen and (max-width: 400px) {
+  .hero-input {
+    padding: 8px 30px 8px 10px;
+    width: 150px;
+  }
+  .hero-info {
+    font-size: 16px;
+    gap: 8px;
+    text-align: center;
   }
 }

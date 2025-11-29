@@ -39,6 +39,7 @@
   font-size: 18px;
   cursor: pointer;
   line-height: 1;
+  color: var(--secondary-color);
 }
 
 .login-form {
@@ -100,4 +101,10 @@
   .login-modal { margin: 0 12px; }
   .login-title { font-size: 15px; }
   .login-button { font-size: 14px; }
+}
+
+@media (min-width: 320px) and (max-width: 650px) {
+.header-btn{
+    padding: 5px 10px;
+}
 }

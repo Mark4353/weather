@@ -9,6 +9,7 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 20px 20px;
+   
 }
 .header-links{
     display: flex;
@@ -29,8 +30,7 @@ header{
 transition: all 0.3s ease;
 }
 img{
-    height: 60px;
-    width: 60px;
+ color: var(--header-logo-color);
 }
 .header-btns{
     
@@ -71,4 +71,13 @@ border-radius: 5px;
     padding: 8px 15px;
     color: var(--cart-text-color);
     transition: all 0.5s ease;
+}
+@media (min-width: 320px) and (max-width: 650px) {
+.header-links{
+    display: none;
+}
+
+.theme-btn{
+    padding: 3px 5px;
+}
 }

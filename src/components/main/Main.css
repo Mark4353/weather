@@ -72,7 +72,7 @@ height: 120px;
 }
 .item-ref-btn:hover{
     cursor: pointer;
-    color: #000;
+    color: #808080;
 }
 .item-like-btn{
     background: var(--card-background);
@@ -83,11 +83,13 @@ height: 120px;
     cursor: pointer;
     color: red;
 }
+
 .item-more-btn{
     background: var(--back-color);
     border: none;
-    color: #0000;
-    border-radius: 4px;
+    color: var(--cart-text-color);
+    border-radius: 10px;
+    padding: 5px 10px;
 }
 .item-more-btn:hover{
     cursor: pointer;
@@ -134,4 +136,18 @@ height: 120px;
     height: 150px;
     object-fit: cover;
     border-radius: 5px;
+}
+.news-btn{
+background-color: var(--back-color);
+    color: var(--cart-text-color);
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    margin-bottom: 15px;
+}
+.news-btn:hover{
+    background-color: var(--btn-hover-color2);
+    transition: all 0.3s ease;
 }

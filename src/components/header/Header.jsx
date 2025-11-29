@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Header.css";
 import LoginButton from "../modal/login";
-
+import logo from '../../logo1.png';
 function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -34,26 +34,29 @@ function Header() {
       <div className="container">
         <div className="header">
           <div className="logo-box">
-            <img src='' alt="logo" />
+            <img src={logo} alt="logo" />
           </div>
+          
+           
+            <ul className="header-links">
+              <li className="header-link">Who we are</li>
+              <li className="header-link">Contacts</li>
+              <li className="header-link">Menu</li>
+            </ul>
 
-          <ul className="header-links">
-            <li className="header-link">Who we are</li>
-            <li className="header-link">Contacts</li>
-            <li className="header-link">Menu</li>
-          </ul>
-
-        
-
-          <div className="header-btns">
-            <button className="theme-btn" onClick={toggleTheme} title="Toggle theme">
-            {isDarkMode ? "☀️" : "🌙"}
-          </button> 
-          <LoginButton />
-             
+            <div className="header-btns">
+              <button
+                className="theme-btn"
+                onClick={toggleTheme}
+                title="Toggle theme"
+              >
+                {isDarkMode ? "☀️" : "🌙"}
+              </button>
+              <LoginButton />
+             </div>
           </div>
         </div>
-      </div>
+
     </header>
   );
 }

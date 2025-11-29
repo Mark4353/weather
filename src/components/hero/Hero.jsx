@@ -1,4 +1,6 @@
 import "./Hero.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+
 
 function Hero() {
 
@@ -27,7 +29,7 @@ function Hero() {
             className="hero-input"
             placeholder="Search location..."
           />
-          <button className="hero-search-btn">search</button>
+          <button className="hero-search-btn"><i class="bi bi-search"></i></button>
         </form>
       </div>
       </div>

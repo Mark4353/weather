@@ -34,6 +34,7 @@
     --cart-text-color: #000000;
     --hero-bg-opacity: 0.2;
     --input-btn-color: #FFB36C;
+    --header-logo-color: #000000;
 }
 .dark-mode {
     --back-color: #636363;
@@ -47,6 +48,7 @@
     --cart-text-color: #FFFFFF;
     --hero-bg-opacity: 0.6;
     --input-btn-color: #aa5200;
+    --header-logo-color: #FFFFFF;
 }
 body {
     margin: 0;
