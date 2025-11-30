@@ -1,0 +1,137 @@
+.slider {
+  padding: 20px;
+
+  position: relative;
+}
+
+.slider-title {
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--secondary-color, #333);
+  font-weight: 600;
+}
+
+
+.slider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+
+.slider-main {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  width: 300px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.slider-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* списки миниатюр слева и справа */
+.slider-list {
+  display: flex;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+ 
+}
+
+.slider-list.left {
+  flex-direction: row-reverse;
+   
+}
+
+.slider-list.right {
+  flex-direction: row;
+   
+}
+
+.slider-item {
+  width: 170px;
+  height: 110px;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  opacity: 0.75;
+
+}
+
+.slider-item:hover {
+  opacity: 0.85;
+  transform: scale(1.08);
+}
+
+.slider-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1370px) {
+  .slider-container {
+    flex-direction: column;
+  }
+
+  .slider-list {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .slider-main {
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+  }
+
+  .slider-item {
+    width: 130px;
+    height: 90px;
+  }
+}
+
+@media (max-width: 600px) {
+  .slider {
+    padding: 12px;
+  }
+
+  .slider-title {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .slider-main {
+    width: 100%;
+    height: 190px;
+  }
+
+  .slider-item {
+    width: 90px;
+    height: 65px;
+  }
+}

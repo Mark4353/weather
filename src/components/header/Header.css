@@ -29,6 +29,13 @@ header{
     color: var(--back-color);
 transition: all 0.3s ease;
 }
+
+.logo-box{
+    background-color: var(--logo-bg-color);
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+}
 img{
  color: var(--header-logo-color);
 }

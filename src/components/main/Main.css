@@ -22,6 +22,7 @@ body{
    height: 370px;
     width: 280px;
     padding: 10px;
+    transition: all 0.3s ease;
 }
 .item-city{
     font-size: 18px;
@@ -130,6 +131,7 @@ height: 120px;
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
+    transition: all 0.3s ease;
 }
 .news-img{
     width: 100%;

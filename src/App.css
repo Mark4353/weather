@@ -35,6 +35,7 @@
     --hero-bg-opacity: 0.2;
     --input-btn-color: #FFB36C;
     --header-logo-color: #000000;
+    --logo-bg-color: #FFFFFF;
 }
 .dark-mode {
     --back-color: #636363;
@@ -49,6 +50,7 @@
     --hero-bg-opacity: 0.6;
     --input-btn-color: #aa5200;
     --header-logo-color: #FFFFFF;
+    --logo-bg-color: #595959;
 }
 body {
     margin: 0;

@@ -52,6 +52,28 @@ export default function LoginButton() {
       setModalOpen(false);
   }
 
+
+  async function getUserGeolocation() {
+    return new Promise((resolve) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            resolve({
+              latitude: pos.coords.latitude,
+              longitude: pos.coords.longitude,
+              accuracy: pos.coords.accuracy,
+            });
+          },
+          () => {
+            resolve(null);
+          }
+        );
+      } else {
+        resolve(null);
+      }
+    });
+  }
+
   async function handleSubmit(e) {
     e && e.preventDefault();
     if (!email || !password) {
@@ -61,16 +83,15 @@ export default function LoginButton() {
     setSubmitting(true);
     setError("");
     try {
-     
+      const geolocation = await getUserGeolocation();
+
       const checkRes = await fetch(API_BASE);
       if (!checkRes.ok) throw new Error("Network error while checking user");
       const allUsers = await checkRes.json();
 
-     
       const found = allUsers.find((u) => u.email === email);
 
       if (found) {
-        
         if (found.password !== password) {
           throw new Error("Invalid password");
         }
@@ -85,11 +106,18 @@ export default function LoginButton() {
         return;
       }
 
-      
       const createRes = await fetch(API_BASE, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, name: email.split("@")[0] }),
+        body: JSON.stringify({
+          email,
+          password,
+          name: email.split("@")[0],
+          latitude: geolocation?.latitude || null,
+          longitude: geolocation?.longitude || null,
+          accuracy: geolocation?.accuracy || null,
+          registeredAt: new Date().toISOString(),
+        }),
       });
       if (!createRes.ok) throw new Error("Failed to create account.");
       const created = await createRes.json();
