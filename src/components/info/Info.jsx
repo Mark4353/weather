@@ -1,136 +1,77 @@
-import "./Info.css";
-export default function Info() {
-  const data = [
-    14, 12, 11, 10, 10, 11, 12, 13, 14, 16, 17, 18, 19, 21, 23, 24, 25,
-  ];
+import React, { useEffect, useState } from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
 
-  const labels = [
-    "11 pm",
-    "Oct 14",
-    "1 am",
-    "2 am",
-    "3 am",
-    "4 am",
-    "5 am",
-    "6 am",
-    "7 am",
-    "8 am",
-    "9 am",
-    "10 am",
-    "11 am",
-    "12 pm",
-    "1 pm",
-    "2 pm",
-    "3 pm",
-  ];
+const API_KEY = "33efc2b91d2c7c3d5deea4f4c1a523d2"; // ← вставьте ключ
 
-  const width = 900;
-  const height = 350;
-  const pad = { top: 30, right: 20, bottom: 30, left: 50 };
-  const innerW = width - pad.left - pad.right;
-  const innerH = height - pad.top - pad.bottom;
+export default function HourlyForecast({ city = "London" }) {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const minY = Math.min(...data) - 2;
-  const maxY = Math.max(...data) + 2;
+  useEffect(() => {
+    async function loadWeather() {
+      try {
+        setLoading(true);
 
-  const scaleX = (i) => pad.left + (i / (data.length - 1)) * innerW;
-  const scaleY = (v) => pad.top + ((maxY - v) / (maxY - minY)) * innerH;
+        const respCity = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=en&appid=${API_KEY}`
+        );
+        const cityData = await respCity.json();
 
-  const path = data
-    .map((v, i) => `${i === 0 ? "M" : "L"} ${scaleX(i)} ${scaleY(v)}`)
-    .join(" ");
+        const { lon, lat } = cityData.coord;
+
+        const respHourly = await fetch(
+          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+        );
+
+        const hourlyData = await respHourly.json();
+
+        const parsed = hourlyData.list.slice(0, 12).map((item) => ({
+          time: new Date(item.dt * 1000).getHours() + ":00",
+          temp: Math.round(item.main.temp),
+        }));
+
+        setData(parsed);
+      } catch (err) {
+        setError("Ошибка загрузки данных");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadWeather();
+  }, [city]);
+
+  if (loading) return <div>Загрузка...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
-    <section className="info">
-      <div className="container">
-        <ul className="info-list">
-          <li className="info-item">
-            <h3 className="info-card-title">Feels like</h3>
-          </li>
-          <li className="info-item">
-            <h3 className="info-card-title">Min ℃</h3>
-          </li>
-          <li className="info-item">
-            <h3 className="info-card-title">Humidity</h3>
-          </li>
-          <li className="info-item">
-            <h3 className="info-card-title">Pressure</h3>
-          </li>
-          <li className="info-item">
-            <h3 className="info-card-title">Wind speed</h3>
-          </li>
-          <li className="info-item">
-            <h3 className="info-card-title">Visibility</h3>
-          </li>
-        </ul>
-        <div className="bg-gray-100 w-full flex justify-center py-10">
-          <div className="bg-gray-200 p-6 rounded-xl w-[980px] shadow">
-            <h3 className="mb-4 text-gray-700 text-sm font-medium">
-              Hourly forecast
-            </h3>
+    <div style={{ width: "90%", height: 350, background: "#f4f4f4", padding: 20, borderRadius: 12 }}>
+      <h3>Hourly forecast — {city}</h3>
 
-            <svg width={width} height={height}>
-              {[5, 10, 15, 20, 25].map((t) => (
-                <line
-                  key={t}
-                  x1={pad.left}
-                  x2={pad.left + innerW}
-                  y1={scaleY(t)}
-                  y2={scaleY(t)}
-                  stroke="#ccc"
-                  strokeWidth="1"
-                />
-              ))}
-
-              {[5, 10, 15, 20, 25].map((t) => (
-                <text
-                  key={t}
-                  x={pad.left - 10}
-                  y={scaleY(t) + 4}
-                  fontSize="12"
-                  textAnchor="end"
-                  fill="#555"
-                >
-                  {t}°C
-                </text>
-              ))}
-
-              {labels.map((t, i) => (
-                <text
-                  key={i}
-                  x={scaleX(i)}
-                  y={height - 5}
-                  fontSize="11"
-                  textAnchor="middle"
-                  fill="#555"
-                >
-                  {t}
-                </text>
-              ))}
-
-              <path
-                d={path}
-                fill="none"
-                stroke="#f6a44c"
-                strokeWidth="3"
-                strokeLinecap="round"
-              />
-            </svg>
-          </div>
-        </div>
-
-        <div className="day-for">
-            <h3 className="day-title">8-day forecast</h3>
-            <ul className="day-list">
-              <li className="day-item">
-                <p className="day-name"></p>
-                <img src="" alt="" className="day-img" />
-                <p className="day-temp"></p>
-                <p className="day-info"></p>
-              </li>
-            </ul>
-        </div>
-      </div>
-    </section>
+      <ResponsiveContainer width="100%" height="90%">
+        <LineChart data={data}>
+          <CartesianGrid stroke="#dcdcdc" />
+          <XAxis dataKey="time" />
+          <YAxis domain={["dataMin-2", "dataMax+2"]} unit="°C" />
+          <Tooltip />
+          <Line
+            type="monotone"
+            dataKey="temp"
+            stroke="#ffa74f"
+            strokeWidth={3}
+            dot={{ r: 3 }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
