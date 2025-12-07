@@ -8,7 +8,7 @@ import React, {
 import "./Main.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Info from "../info/Info";
-
+import Day from "../info/8-day";
 const API_KEY =
   process.env.REACT_APP_OWM_KEY || "33efc2b91d2c7c3d5deea4f4c1a523d2";
 
@@ -231,12 +231,9 @@ const Main = forwardRef(function Main(props, ref) {
             if (e.target.classList.contains("fixed-info-overlay")) setActiveInfo(null);
           }}
         >
-          <ul className="info-list">
-            <li className="info-item"><button className="info-btn">Hourly forecast</button></li>
-            <li className="info-item"><button className="info-btn">8-day forecast</button></li>
-             <li className="info-item"><button className="info-btn">analitik</button></li>
-          </ul>
+        
           <div className="fixed-info-panel" role="dialog" aria-modal="true">
+            <div className="fixed-header">
             <button
               className="fixed-info-close"
               onClick={() => setActiveInfo(null)}
@@ -244,9 +241,14 @@ const Main = forwardRef(function Main(props, ref) {
             >
               ×
             </button>
+             
+          
+          </div>
             <div className="fixed-info-inner">
               <Info key={`info-${activeInfo.id}-${activeInfo.city}`} city={activeInfo.city} />
-            </div>
+             <Day city={activeInfo.city} />
+             </div>
+            
           </div>
         </div>
       )}

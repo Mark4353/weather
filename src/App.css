@@ -1,4 +1,4 @@
-/* Mobile: 320px - 480px */
+
 @media (min-width: 320px) {
     .container {
         padding: 0 50px;
@@ -6,7 +6,7 @@
     }
 }
 
-/* Tablet: 768px and above */
+
 @media (min-width: 768px) {
     .container {
         padding: 0 100px;
@@ -14,7 +14,7 @@
     }
 }
 
-/* Desktop: 1200px and above */
+
 @media (min-width: 1200px) {
     .container {
         padding: 0 150px;
@@ -25,6 +25,7 @@
 :root {
     --back-color: #FFB36C;
     --secondary-color: #333333;
+    --secondary2-color: #222;
     --background-color: #FFFFFF;
     --font-family: 'Arial', sans-serif;
     --card-background: #E8E8E8;
@@ -36,21 +37,24 @@
     --input-btn-color: #FFB36C;
     --header-logo-color: #000000;
     --logo-bg-color: #FFFFFF;
+    --day-hover-bg: #ececef;
 }
 .dark-mode {
     --back-color: #636363;
     --secondary-color: #CCCCCC;
+    --secondary2-color: #e1e1e1;
     --background-color: #121212;
     --font-family: 'Arial', sans-serif;
     --card-background: #1E1E1E;
     --data-color: #AAAAAA;
     --btn-hover-color: #714112;
-     --btn-hover-color2: #454545;
+    --btn-hover-color2: #454545;
     --cart-text-color: #FFFFFF;
     --hero-bg-opacity: 0.6;
     --input-btn-color: #aa5200;
     --header-logo-color: #FFFFFF;
     --logo-bg-color: #595959;
+    --day-hover-bg: #2a2a2a;
 }
 body {
     margin: 0;

@@ -154,7 +154,7 @@ background-color: var(--back-color);
     transition: all 0.3s ease;
 }
 
-/* Overlay wrapper (covers whole viewport) */
+
 .fixed-info-overlay {
   position: fixed;
   
@@ -166,9 +166,15 @@ background-color: var(--back-color);
   z-index: 9999;
   padding: 28px;
   box-sizing: border-box;
+
+}
+.fixed-header{
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--title-color, #111);
+    margin-bottom: 16px;
 }
 
-/* Panel that contiene Info (карточка с диаграммой) */
 .fixed-info-panel {
   width: 90%;
   max-width: 1200px;
@@ -182,7 +188,7 @@ background-color: var(--back-color);
   box-sizing: border-box;
 }
 
-/* внутренний контейнер для контента Info */
+
 .fixed-info-inner {
   width: 100%;
   height: 100%;
@@ -190,12 +196,12 @@ background-color: var(--back-color);
   flex-direction: column;
 }
 
-/* кнопка закрытия */
+
 .fixed-info-close {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: rgba(0,0,0,0.06);
+  background: var(--back-color);
   border: none;
   width: 40px;
   height: 40px;
@@ -208,7 +214,7 @@ background-color: var(--back-color);
   justify-content: center;
 }
 
-/* адаптация для небольших экранов */
+
 @media (max-width: 900px) {
   .fixed-info-panel {
     height: 80vh;
@@ -225,14 +231,13 @@ background-color: var(--back-color);
   }
 }
 
-/* если внутри Info есть chart-wrapper используем max-height чтобы не вылезло */
 .fixed-info-panel .chart-wrapper {
   width: 100%;
   max-height: calc(90vh - 120px);
   overflow: auto;
 }
 
-/* optional: плавное появление */
+
 .fixed-info-overlay {
   animation: fadeInOverlay 160ms ease;
 }

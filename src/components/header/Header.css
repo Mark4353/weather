@@ -39,6 +39,7 @@ transition: all 0.3s ease;
 img{
  color: var(--header-logo-color);
 }
+
 .header-btns{
     
     display: flex;
@@ -83,8 +84,19 @@ border-radius: 5px;
 .header-links{
     display: none;
 }
-
+header{
+    height: 85px;
+}
+.logo-box{
+    padding: 3px 7px;
+}
+img{
+    width: 50px;
+}
 .theme-btn{
     padding: 3px 5px;
+}
+.header-btns{
+    gap: 10px;
 }
 }
