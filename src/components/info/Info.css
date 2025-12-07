@@ -1,5 +1,5 @@
 .info-panel {
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   height: 350px;
   background: var(--background-color);
@@ -30,7 +30,7 @@
   max-width: 1200px;
   padding: 16px;
   border-radius: 10px;
-  background: #fff7e8;
+  background:  var(--background-color);
   color: #8a4b00;
   box-shadow: 0 6px 18px rgba(8, 15, 25, 0.04);
 }
@@ -231,4 +231,63 @@
     width: 70px;
     font-size: 15px;
   }
+}
+
+@media screen  and (max-width: 520px) {
+  .forecast-date {
+    width: 80px;
+    font-size: 13px;
+  }
+
+  .forecast-desc {
+    width: 90px;
+    font-size: 12px;
+  }
+
+  .forecast-temp {
+    width: 60px;
+    font-size: 14px;
+  }
+    
+}
+@media screen and (max-width: 460px) {
+    .info-title {
+    font-size: 16px;
+    }
+  
+    .forecast-date {
+    width: 60px;
+    font-size: 10px;
+  }
+
+  .forecast-desc {
+    width: 50px;
+    font-size: 9px;
+  }
+
+  .forecast-temp {
+    width: 40px;
+    font-size: 10px;
+  }
+    
+}
+@media screen and (max-width: 350px) {
+    .info-title {
+    font-size: 14px;
+    }
+  .forecast-date {
+    width: 50px;
+    font-size: 9px;
+  }
+
+  .forecast-desc {
+    width: 40px;
+    font-size: 8px;
+  }
+
+  .forecast-temp {
+    width: 30px;
+    font-size: 9px;
+  }
+   
 }

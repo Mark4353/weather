@@ -1,10 +1,11 @@
 import "./Footer.css";
-
+import logo from '../../logo1.png';
 function Footer() {
   return (
     
     <footer>
       <div className="container footer-container">
+        <img src={logo} alt="logo" />
       <div className="adr">
         <h3 className="footer-adr-title">Address</h3>
         <p className="footer-adr">Svobody str. 35 Kyiv, Ukraine</p>

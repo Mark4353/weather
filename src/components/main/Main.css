@@ -24,6 +24,12 @@ body{
     padding: 10px;
     transition: all 0.3s ease;
 }
+.item-icon{
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: 0 auto;
+}
 .item-city{
     font-size: 18px;
     font-weight: bold;
@@ -244,4 +250,14 @@ background-color: var(--back-color);
 @keyframes fadeInOverlay {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@media screen and (max-width: 400px) {
+  .fixed-info-close {
+    width: 20px;
+    height: 20px;
+    top: 8px;
+    right: 8px;
+  }
+    
 }

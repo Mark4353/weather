@@ -104,7 +104,7 @@ export default function EightDayForecast({ city }) {
 
   return (
     <div className="day-panel">
-      <h3 className="info-title">8-day forecast — {city}</h3>
+      <h3 className="info-title">7-day forecast — {city}</h3>
 
       <div className="forecast-list">
         {days.map((day, idx) => (
