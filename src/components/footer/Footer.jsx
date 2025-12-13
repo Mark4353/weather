@@ -1,5 +1,6 @@
 import "./Footer.css";
 import logo from '../../logo1.png';
+import { hover } from "@testing-library/user-event/dist/hover";
 function Footer() {
   return (
     
@@ -11,7 +12,7 @@ function Footer() {
         <p className="footer-adr">Svobody str. 35 Kyiv, Ukraine</p>
       </div>
       <div className="contact">
-        <h3 className="contact-title">Contact us</h3>
+        <h3 className="contact-title"><a href="#" className="footer-link">Contact us</a></h3>
       </div>
       </div>
     </footer>

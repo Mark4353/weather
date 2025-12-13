@@ -80,6 +80,10 @@ border-radius: 5px;
     color: var(--cart-text-color);
     transition: all 0.5s ease;
 }
+.theme-btn:hover{
+    background-color: var(--theme-hover-color);
+    transition: all 0.3s ease;
+}
 @media (min-width: 320px) and (max-width: 650px) {
 .header-links{
     display: none;

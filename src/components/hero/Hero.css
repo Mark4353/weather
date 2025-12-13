@@ -113,7 +113,7 @@ position: relative;
   cursor: not-allowed;
 }
 
-/* выпадающий список предложений */
+
 .hero-suggestions {
   position: absolute;
   top: 100%;
@@ -175,6 +175,11 @@ position: relative;
     margin-bottom: 50px;
     text-align: center;
   }
+  .hero-search-btn{
+    width: 46px;
+    height: 34px;
+    margin-left: -20px;
+  }
 }
 @media screen and (max-width: 650px) {
   .hero {
@@ -197,7 +202,12 @@ position: relative;
     gap: 10px;
   text-align: center;
   }
-  
+    .hero-search-btn{
+    width: 40px;
+    height: 34px;
+    margin-left: -20px;
+    padding-right: 20px;
+  }
   
 }
 @media screen and (max-width: 400px) {
@@ -219,5 +229,15 @@ position: relative;
 
   .city-state {
     display: none;
+  }
+    .hero-search-btn{
+    width: 35px;
+    height: 34px;
+    margin-left: -17px;
+    padding: 0;
+  }
+  .bi-search{
+    width: 10px;
+    height: 10px;
   }
 }

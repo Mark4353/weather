@@ -80,6 +80,8 @@ function Hero({ onCitySelect }) {
                 value={searchInput}
                 onChange={handleSearch}
                 autoComplete="off"
+                pattern="^[a-zA-Z\s-]{2,}$"
+                required
               />
               <button type="submit" className="hero-search-btn" disabled={loading}>
                 <i className="bi bi-search" />

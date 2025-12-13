@@ -19,3 +19,21 @@ footer{
 .footer-adr{
     width: 115px;
 }
+.footer-link:hover{
+    color: var(--link-hover-color);
+
+transition: all 0.3s ease;
+    cursor: pointer;
+}
+.footer-link{
+    text-decoration: none;
+    color: var(--cart-text-color);
+    transition: all 0.3s ease;
+}
+@media screen and (max-width: 600px) {
+    .footer-container{
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+}

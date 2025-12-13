@@ -182,9 +182,7 @@ const Main = forwardRef(function Main(props, ref) {
             </button>
           </li>
           <li className="btn">
-            <button className="item-like-btn" title="Favorites">
-              <i className="bi bi-heart "></i>
-            </button>
+            
           </li>
           <li className="btn">
             <button
