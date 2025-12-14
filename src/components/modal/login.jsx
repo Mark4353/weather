@@ -22,6 +22,13 @@ export default function LoginButton() {
     } catch {
       localStorage.removeItem("weather_user");
     }
+
+    // open modal programmatically when other parts of app dispatch 'open-login'
+    function onOpenLogin() {
+      setModalOpen(true);
+    }
+    window.addEventListener("open-login", onOpenLogin);
+    return () => window.removeEventListener("open-login", onOpenLogin);
   }, []);
 
   useEffect(() => {
@@ -103,6 +110,8 @@ export default function LoginButton() {
         setUser(usr);
         localStorage.setItem("weather_user", JSON.stringify(usr));
         setModalOpen(false);
+        // notify app that a user just logged in
+        window.dispatchEvent(new CustomEvent("user-logged-in", { detail: usr }));
         return;
       }
 
@@ -129,6 +138,8 @@ export default function LoginButton() {
       setUser(usr);
       localStorage.setItem("weather_user", JSON.stringify(usr));
       setModalOpen(false);
+      // notify app that a user just registered/logged in
+      window.dispatchEvent(new CustomEvent("user-logged-in", { detail: usr }));
     } catch (err) {
       setError(err?.message || "Login failed. Try again.");
     } finally {

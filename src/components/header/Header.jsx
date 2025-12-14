@@ -4,6 +4,25 @@ import LoginButton from "../modal/login";
 import logo from '../../logo1.png';
 function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      const scrolled = window.scrollY || window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight <= 0) return setShowScrollTop(false);
+      const ratio = scrolled / docHeight;
+      setShowScrollTop(ratio > 0.6);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -39,9 +58,9 @@ function Header() {
           
            
             <ul className="header-links">
-              <li className="header-link">Who we are</li>
-              <li className="header-link">Contacts</li>
-              <li className="header-link">Menu</li>
+              <li className="header-link"><a href="#who">Who we are</a></li>
+              <li className="header-link"><a href="#contacts">Contacts</a></li>
+              <li className="header-link"><a href="#menu">Menu</a></li>
             </ul>
 
             <div className="header-btns">
@@ -56,6 +75,16 @@ function Header() {
              </div>
           </div>
         </div>
+
+      {showScrollTop && (
+        <button
+          className="scroll-top-btn"
+          onClick={scrollToTop}
+          aria-label="Scroll to top"
+        >
+          <i className="bi bi-arrow-up" />
+        </button>
+      )}
 
     </header>
   );

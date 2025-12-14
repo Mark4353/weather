@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Hero.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-function Hero({ onCitySelect }) {
+function Hero({ onCitySelect, id }) {
   const [searchInput, setSearchInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -60,7 +60,7 @@ function Hero({ onCitySelect }) {
   }
 
   return (
-    <section className="hero">
+    <section id={id} className="hero">
       <div className="bg-opacity">
         <div className="container">
           <h1 className="hero-title">Weather dashboard</h1>

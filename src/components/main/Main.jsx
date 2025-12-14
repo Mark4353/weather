@@ -20,6 +20,7 @@ const Main = forwardRef(function Main(props, ref) {
 
   
   const [activeInfo, setActiveInfo] = useState(null);
+  const [pendingInfo, setPendingInfo] = useState(null);
 
   
   useImperativeHandle(ref, () => ({
@@ -112,6 +113,14 @@ const Main = forwardRef(function Main(props, ref) {
 
 
   function toggleInfoFor(id, cityName) {
+    const saved = localStorage.getItem("weather_user");
+    if (!saved) {
+      setPendingInfo({ id, city: cityName });
+      // ask the login modal to open
+      window.dispatchEvent(new CustomEvent("open-login"));
+      return;
+    }
+
     if (activeInfo && activeInfo.id === id) setActiveInfo(null);
     else setActiveInfo({ id, city: cityName });
   }
@@ -126,6 +135,18 @@ const Main = forwardRef(function Main(props, ref) {
       };
     }
   }, [activeInfo]);
+
+  // react to successful login: if user tried to open details before auth, open them now
+  useEffect(() => {
+    function onUserLoggedIn(e) {
+      if (pendingInfo) {
+        setActiveInfo(pendingInfo);
+        setPendingInfo(null);
+      }
+    }
+    window.addEventListener("user-logged-in", onUserLoggedIn);
+    return () => window.removeEventListener("user-logged-in", onUserLoggedIn);
+  }, [pendingInfo]);
 
   const now = new Date();
   const timeString = now.toLocaleTimeString([], {
@@ -212,7 +233,7 @@ const Main = forwardRef(function Main(props, ref) {
   };
 
   return (
-    <section className="main">
+    <section id="menu" className="main">
       <div className="container">
         <ul className="card-list">
           {renderWeatherCard(weather, true)}

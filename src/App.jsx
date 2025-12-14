@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <Header />
-      <Hero onCitySelect={handleCitySelect} />
+      <Hero id="who" onCitySelect={handleCitySelect} />
       <Main ref={mainRef} />
      
       <News />

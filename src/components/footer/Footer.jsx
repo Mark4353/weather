@@ -4,7 +4,7 @@ import { hover } from "@testing-library/user-event/dist/hover";
 function Footer() {
   return (
     
-    <footer>
+    <footer id="contacts">
       <div className="container footer-container">
         <img src={logo} alt="logo" />
       <div className="adr">
@@ -12,7 +12,7 @@ function Footer() {
         <p className="footer-adr">Svobody str. 35 Kyiv, Ukraine</p>
       </div>
       <div className="contact">
-        <h3 className="contact-title"><a href="#" className="footer-link">Contact us</a></h3>
+        <h3 className="contact-title"><a href="#contacts" className="footer-link">Contact us</a></h3>
       </div>
       </div>
     </footer>
