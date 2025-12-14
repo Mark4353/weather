@@ -12,7 +12,7 @@ function Footer() {
         <p className="footer-adr">Svobody str. 35 Kyiv, Ukraine</p>
       </div>
       <div className="contact">
-        <h3 className="contact-title"><a href="#contacts" className="footer-link">Contact us</a></h3>
+        <h3 className="contact-title"><a href="https://goiteens.com/" className="footer-link">Contact us</a></h3>
       </div>
       </div>
     </footer>
