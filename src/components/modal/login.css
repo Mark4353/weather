@@ -96,6 +96,29 @@
   margin-top: 8px;
 }
 
+.login-link {
+  background: transparent;
+  border: none;
+  color: var(--link-hover-color);
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 13px;
+}
+.login-logout-btn{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: none;
+  background: var(--back-color);
+  color: var(--cart-text-color);
+  cursor: pointer;
+  font-size: 14px;
+   transition: all 0.3s ease;
+}
+.login-logout-btn:hover{
+    background-color: rgb(247, 59, 35);
+    transition: all 0.3s ease;
+}
 
 @media (max-width: 480px) {
   .login-modal { margin: 0 12px; }

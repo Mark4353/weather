@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Header.css";
 import LoginButton from "../modal/login";
+import RegisterModal from "../modal/register";
 import logo from '../../logo1.png';
 function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -72,6 +73,7 @@ function Header() {
                 {isDarkMode ? "☀️" : "🌙"}
               </button>
               <LoginButton />
+              <RegisterModal />
              </div>
           </div>
         </div>

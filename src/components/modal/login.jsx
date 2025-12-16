@@ -28,7 +28,22 @@ export default function LoginButton() {
       setModalOpen(true);
     }
     window.addEventListener("open-login", onOpenLogin);
-    return () => window.removeEventListener("open-login", onOpenLogin);
+
+    function onUserLogged(e) {
+      const u = e?.detail;
+      if (u) {
+        setUser(u);
+        localStorage.setItem("weather_user", JSON.stringify(u));
+        setModalOpen(false);
+      }
+    }
+
+    window.addEventListener("user-logged-in", onUserLogged);
+
+    return () => {
+      window.removeEventListener("open-login", onOpenLogin);
+      window.removeEventListener("user-logged-in", onUserLogged);
+    };
   }, []);
 
   useEffect(() => {
@@ -43,6 +58,12 @@ export default function LoginButton() {
       setError("");
     }
   }, [modalOpen]);
+
+  function openRegister() {
+    // close login and open register modal
+    setModalOpen(false);
+    window.dispatchEvent(new CustomEvent("open-register"));
+  }
 
   useEffect(() => {
     function onKey(e) {
@@ -115,31 +136,8 @@ export default function LoginButton() {
         return;
       }
 
-      const createRes = await fetch(API_BASE, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          password,
-          name: email.split("@")[0],
-          latitude: geolocation?.latitude || null,
-          longitude: geolocation?.longitude || null,
-          accuracy: geolocation?.accuracy || null,
-          registeredAt: new Date().toISOString(),
-        }),
-      });
-      if (!createRes.ok) throw new Error("Failed to create account.");
-      const created = await createRes.json();
-      const usr = {
-        id: created.id || Date.now(),
-        email: created.email || email,
-        name: created.name || email.split("@")[0],
-      };
-      setUser(usr);
-      localStorage.setItem("weather_user", JSON.stringify(usr));
-      setModalOpen(false);
-      // notify app that a user just registered/logged in
-      window.dispatchEvent(new CustomEvent("user-logged-in", { detail: usr }));
+      // user not found - prompt to register
+      setError("Account not found.\nYou can create a new account.");
     } catch (err) {
       setError(err?.message || "Login failed. Try again.");
     } finally {
@@ -173,7 +171,7 @@ export default function LoginButton() {
           >
             <div className="login-header">
               <h3 id="login-modal-title" className="login-title">
-                {user ? "Account" : "Sign in / Sign up"}
+                {user ? "Account" : "Login"}
               </h3>
               <button
                 onClick={() => setModalOpen(false)}
@@ -213,8 +211,14 @@ export default function LoginButton() {
                 </label>
 
                 <button type="submit" className="login-button" disabled={submitting}>
-                  {submitting ? "Signing in…" : "Sign in / Sign up"}
+                  {submitting ? "Logining..." : "Login"}
                 </button>
+
+                <div style={{ marginTop: 10, textAlign: "center" }}>
+                  <button type="button" className="login-link" onClick={openRegister}>
+                    Create account
+                  </button>
+                </div>
               </form>
             ) : (
               <div className="login-account">
