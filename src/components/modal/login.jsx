@@ -60,7 +60,6 @@ export default function LoginButton() {
   }, [modalOpen]);
 
   function openRegister() {
-    // close login and open register modal
     setModalOpen(false);
     window.dispatchEvent(new CustomEvent("open-register"));
   }
@@ -131,12 +130,10 @@ export default function LoginButton() {
         setUser(usr);
         localStorage.setItem("weather_user", JSON.stringify(usr));
         setModalOpen(false);
-        // notify app that a user just logged in
         window.dispatchEvent(new CustomEvent("user-logged-in", { detail: usr }));
         return;
       }
 
-      // user not found - prompt to register
       setError("Account not found.\nYou can create a new account.");
     } catch (err) {
       setError(err?.message || "Login failed. Try again.");
