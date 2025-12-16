@@ -36,7 +36,8 @@ export default function RegisterModal() {
   }, [modalOpen]);
 
   function handleBackdropClick(e) {
-    if (modalRef.current && !modalRef.current.contains(e.target)) setModalOpen(false);
+    if (modalRef.current && !modalRef.current.contains(e.target))
+      setModalOpen(false);
   }
 
   async function getUserGeolocation() {
@@ -118,9 +119,14 @@ export default function RegisterModal() {
               <h3 id="register-modal-title" className="login-title">
                 Create account
               </h3>
-              <button onClick={() => setModalOpen(false)} aria-label="Close" className="login-close">×</button>
+              <button
+                onClick={() => setModalOpen(false)}
+                aria-label="Close"
+                className="login-close"
+              >
+                ×
+              </button>
             </div>
-
             <form onSubmit={handleRegister} className="login-form">
               {error && <div className="login-error">{error}</div>}
               <label className="login-label">
@@ -148,7 +154,11 @@ export default function RegisterModal() {
                 />
               </label>
 
-              <button type="submit" className="login-button" disabled={submitting}>
+              <button
+                type="submit"
+                className="login-button"
+                disabled={submitting}
+              >
                 {submitting ? "Creating…" : "Create account"}
               </button>
             </form>

@@ -10,10 +10,10 @@
   background-image: url(../../../image/desktop/hero/main-hero-bg.png);
   background-size: cover;
   background-position: center;
-position: relative;
+  position: relative;
   height: 595px;
 }
-.bg-opacity{
+.bg-opacity {
   position: absolute;
   top: 0;
   left: 0;
@@ -64,8 +64,7 @@ position: relative;
   border-radius: 0 9px 9px 0;
   margin-left: -18px;
   transition: all 0.3s ease;
- color: var(--cart-text-color);
-
+  color: var(--cart-text-color);
 }
 .hero-search-btn:hover {
   cursor: pointer;
@@ -95,7 +94,7 @@ position: relative;
 
 .hero-search-btn {
   padding: 10px 16px;
-  background: var(--back-color, #FFB36C);
+  background: var(--back-color, #ffb36c);
   color: var(--cart-text-color, #000);
   border: none;
   border-radius: 6px;
@@ -112,7 +111,6 @@ position: relative;
   opacity: 0.6;
   cursor: not-allowed;
 }
-
 
 .hero-suggestions {
   position: absolute;
@@ -146,7 +144,7 @@ position: relative;
 }
 
 .hero-suggestion-item:hover {
-  background: var(--card-background, #E8E8E8);
+  background: var(--card-background, #e8e8e8);
 }
 
 .city-name {
@@ -175,7 +173,7 @@ position: relative;
     margin-bottom: 50px;
     text-align: center;
   }
-  .hero-search-btn{
+  .hero-search-btn {
     width: 46px;
     height: 34px;
     margin-left: -20px;
@@ -200,15 +198,14 @@ position: relative;
     margin-top: 30px;
     margin-bottom: 30px;
     gap: 10px;
-  text-align: center;
+    text-align: center;
   }
-    .hero-search-btn{
+  .hero-search-btn {
     width: 40px;
     height: 34px;
     margin-left: -20px;
     padding-right: 20px;
   }
-  
 }
 @media screen and (max-width: 400px) {
   .hero-input {
@@ -230,13 +227,13 @@ position: relative;
   .city-state {
     display: none;
   }
-    .hero-search-btn{
+  .hero-search-btn {
     width: 35px;
     height: 34px;
     margin-left: -17px;
     padding: 0;
   }
-  .bi-search{
+  .bi-search {
     width: 10px;
     height: 10px;
   }

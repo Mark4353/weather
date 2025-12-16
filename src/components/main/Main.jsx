@@ -18,11 +18,9 @@ const Main = forwardRef(function Main(props, ref) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  
   const [activeInfo, setActiveInfo] = useState(null);
   const [pendingInfo, setPendingInfo] = useState(null);
 
-  
   useImperativeHandle(ref, () => ({
     addCity: (cityData) => {
       loadWeatherByCity(cityData);
@@ -87,7 +85,8 @@ const Main = forwardRef(function Main(props, ref) {
   const getCityWeather = useCallback(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (pos) => loadWeatherByCoordinates(pos.coords.latitude, pos.coords.longitude),
+        (pos) =>
+          loadWeatherByCoordinates(pos.coords.latitude, pos.coords.longitude),
         () => loadCityByIP()
       );
     } else {
@@ -111,7 +110,6 @@ const Main = forwardRef(function Main(props, ref) {
     if (activeInfo?.id === cityId) setActiveInfo(null);
   }
 
-
   function toggleInfoFor(id, cityName) {
     const saved = localStorage.getItem("weather_user");
     if (!saved) {
@@ -125,7 +123,6 @@ const Main = forwardRef(function Main(props, ref) {
     else setActiveInfo({ id, city: cityName });
   }
 
- 
   useEffect(() => {
     if (activeInfo) {
       const prev = document.body.style.overflow;
@@ -185,7 +182,9 @@ const Main = forwardRef(function Main(props, ref) {
         )}
 
         <p className="item-temp">
-          {weatherData?.main?.temp ? `${Math.round(weatherData.main.temp)}°C` : "—"}
+          {weatherData?.main?.temp
+            ? `${Math.round(weatherData.main.temp)}°C`
+            : "—"}
         </p>
         <ul className="item-btns">
           <li className="btn">
@@ -202,9 +201,7 @@ const Main = forwardRef(function Main(props, ref) {
               <i className="bi bi-arrow-clockwise"></i>
             </button>
           </li>
-          <li className="btn">
-            
-          </li>
+          <li className="btn"></li>
           <li className="btn">
             <button
               className="item-more-btn"
@@ -241,33 +238,31 @@ const Main = forwardRef(function Main(props, ref) {
         </ul>
       </div>
 
-      
       {activeInfo && (
         <div
           className="fixed-info-overlay"
           onMouseDown={(e) => {
-           
-            if (e.target.classList.contains("fixed-info-overlay")) setActiveInfo(null);
+            if (e.target.classList.contains("fixed-info-overlay"))
+              setActiveInfo(null);
           }}
         >
-        
           <div className="fixed-info-panel" role="dialog" aria-modal="true">
             <div className="fixed-header">
-            <button
-              className="fixed-info-close"
-              onClick={() => setActiveInfo(null)}
-              aria-label="Close details"
-            >
-              ×
-            </button>
-             
-          
-          </div>
+              <button
+                className="fixed-info-close"
+                onClick={() => setActiveInfo(null)}
+                aria-label="Close details"
+              >
+                ×
+              </button>
+            </div>
             <div className="fixed-info-inner">
-              <Info key={`info-${activeInfo.id}-${activeInfo.city}`} city={activeInfo.city} />
-             <Day city={activeInfo.city} />
-             </div>
-            
+              <Info
+                key={`info-${activeInfo.id}-${activeInfo.city}`}
+                city={activeInfo.city}
+              />
+              <Day city={activeInfo.city} />
+            </div>
           </div>
         </div>
       )}
@@ -276,4 +271,3 @@ const Main = forwardRef(function Main(props, ref) {
 });
 
 export default Main;
-

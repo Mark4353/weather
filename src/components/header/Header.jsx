@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./Header.css";
 import LoginButton from "../modal/login";
 import RegisterModal from "../modal/register";
-import logo from '../../logo1.png';
+import logo from "../../logo1.png";
 function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -10,7 +10,8 @@ function Header() {
   useEffect(() => {
     function onScroll() {
       const scrolled = window.scrollY || window.pageYOffset;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       if (docHeight <= 0) return setShowScrollTop(false);
       const ratio = scrolled / docHeight;
       setShowScrollTop(ratio > 0.6);
@@ -56,27 +57,32 @@ function Header() {
           <div className="logo-box">
             <img src={logo} alt="logo" />
           </div>
-          
-           
-            <ul className="header-links">
-              <li className="header-link"><a href="#who">Who we are</a></li>
-              <li className="header-link"><a href="#contacts">Contacts</a></li>
-              <li className="header-link"><a href="#menu">Menu</a></li>
-            </ul>
 
-            <div className="header-btns">
-              <button
-                className="theme-btn"
-                onClick={toggleTheme}
-                title="Toggle theme"
-              >
-                {isDarkMode ? "☀️" : "🌙"}
-              </button>
-              <LoginButton />
-              <RegisterModal />
-             </div>
+          <ul className="header-links">
+            <li className="header-link">
+              <a href="#who">Who we are</a>
+            </li>
+            <li className="header-link">
+              <a href="#contacts">Contacts</a>
+            </li>
+            <li className="header-link">
+              <a href="#menu">Menu</a>
+            </li>
+          </ul>
+
+          <div className="header-btns">
+            <button
+              className="theme-btn"
+              onClick={toggleTheme}
+              title="Toggle theme"
+            >
+              {isDarkMode ? "☀️" : "🌙"}
+            </button>
+            <LoginButton />
+            <RegisterModal />
           </div>
         </div>
+      </div>
 
       {showScrollTop && (
         <button
@@ -87,7 +93,6 @@ function Header() {
           <i className="bi bi-arrow-up" />
         </button>
       )}
-
     </header>
   );
 }

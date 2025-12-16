@@ -79,7 +79,6 @@ export default function LoginButton() {
       setModalOpen(false);
   }
 
-
   async function getUserGeolocation() {
     return new Promise((resolve) => {
       if (navigator.geolocation) {
@@ -130,7 +129,9 @@ export default function LoginButton() {
         setUser(usr);
         localStorage.setItem("weather_user", JSON.stringify(usr));
         setModalOpen(false);
-        window.dispatchEvent(new CustomEvent("user-logged-in", { detail: usr }));
+        window.dispatchEvent(
+          new CustomEvent("user-logged-in", { detail: usr })
+        );
         return;
       }
 
@@ -207,12 +208,20 @@ export default function LoginButton() {
                   />
                 </label>
 
-                <button type="submit" className="login-button" disabled={submitting}>
+                <button
+                  type="submit"
+                  className="login-button"
+                  disabled={submitting}
+                >
                   {submitting ? "Logining..." : "Login"}
                 </button>
 
                 <div style={{ marginTop: 10, textAlign: "center" }}>
-                  <button type="button" className="login-link" onClick={openRegister}>
+                  <button
+                    type="button"
+                    className="login-link"
+                    onClick={openRegister}
+                  >
                     Create account
                   </button>
                 </div>

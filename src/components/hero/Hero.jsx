@@ -66,8 +66,8 @@ function Hero({ onCitySelect, id }) {
           <h1 className="hero-title">Weather dashboard</h1>
           <div className="info-box">
             <p className="hero-info">
-              Create your personal list of favorite cities and always be aware of
-              the weather.
+              Create your personal list of favorite cities and always be aware
+              of the weather.
             </p>
             <p className="correct-weaher hero-info">{formattedDate}</p>
           </div>
@@ -83,7 +83,11 @@ function Hero({ onCitySelect, id }) {
                 pattern="^[a-zA-Z\s-]{2,}$"
                 required
               />
-              <button type="submit" className="hero-search-btn" disabled={loading}>
+              <button
+                type="submit"
+                className="hero-search-btn"
+                disabled={loading}
+              >
                 <i className="bi bi-search" />
               </button>
 
@@ -96,7 +100,9 @@ function Hero({ onCitySelect, id }) {
                       onClick={() => handleSelectCity(city)}
                     >
                       <span className="city-name">{city.name}</span>
-                      {city.state && <span className="city-state">{city.state}</span>}
+                      {city.state && (
+                        <span className="city-state">{city.state}</span>
+                      )}
                       <span className="city-country">{city.country}</span>
                     </li>
                   ))}
